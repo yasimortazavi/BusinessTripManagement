@@ -1,4 +1,6 @@
-﻿namespace BusinessTrip.Domain.Entities;
+﻿using BusinessTrip.Domain.Enums;
+
+namespace BusinessTrip.Domain.Entities;
 
 public class BusinessTripRequest
 {
@@ -23,4 +25,23 @@ public class BusinessTripRequest
     public DateTime EndDate { get; set; }
 
     public decimal EstimatedBudget { get; set; }
+
+    public BusinessTripStatus BusinessTripStatus { get; set; }
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    public string? AdditionalNotes { get; set; }
+
+
+    public ICollection<TripRequestTravelService> TripRequestTravelServices
+    { get; set; } = new List<TripRequestTravelService>();
+
+    public ICollection<TripAttachment> Attachments
+    { get; set; } = new List<TripAttachment>();
+
+    public ICollection<TravelBooking> TravelBookings
+    { get; set; } = new List<TravelBooking>();
+
+    public ICollection<TripApproval> TripApprovals
+    { get; set; } = new List<TripApproval>();
 }
