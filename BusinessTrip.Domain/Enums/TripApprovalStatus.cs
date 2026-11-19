@@ -8,5 +8,8 @@ namespace BusinessTrip.Domain.Enums
 {
     public enum TripApprovalStatus
     {
+        Pending = 1,   // در انتظار بررسی
+        Approved = 2,  // تأییدشده
+        Rejected = 3   // ردشده
     }
 }

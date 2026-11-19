@@ -10,7 +10,7 @@ namespace BusinessTrip.Domain.Entities
     public  class TravelBooking
     {
         public int Id { get; set; }
-        public int BusinessTripRequestId { get; set; }
+
         public string BookingReference { get; set; } = string.Empty;
         public BookingType BookingType { get; set; }
         public DateTime? DepartureDate { get; set; }
@@ -21,6 +21,8 @@ namespace BusinessTrip.Domain.Entities
         public string? ProviderName { get; set; } 
         public string? Notes { get; set; } 
 
-        public BusinessTripRequest BusinessTripRequest { get; set; }  = null!;
+        public int TripRequestTravelServiceId { get; set; }
+
+        public TripRequestTravelService TripRequestTravelService { get; set; } = null!;
     }
 }

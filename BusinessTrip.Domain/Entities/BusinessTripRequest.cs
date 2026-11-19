@@ -39,8 +39,6 @@ public class BusinessTripRequest
     public ICollection<TripAttachment> Attachments
     { get; set; } = new List<TripAttachment>();
 
-    public ICollection<TravelBooking> TravelBookings
-    { get; set; } = new List<TravelBooking>();
 
     public ICollection<TripApproval> TripApprovals
     { get; set; } = new List<TripApproval>();

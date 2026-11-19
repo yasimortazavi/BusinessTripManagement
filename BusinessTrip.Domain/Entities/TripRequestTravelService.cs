@@ -8,6 +8,7 @@ namespace BusinessTrip.Domain.Entities;
 
 public class TripRequestTravelService
 {
+    public int Id { get; set; }
     public int BusinessTripRequestId { get; set; }
 
     public BusinessTripRequest BusinessTripRequest { get; set; } = null!;

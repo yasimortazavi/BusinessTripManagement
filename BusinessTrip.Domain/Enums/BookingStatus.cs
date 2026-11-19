@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BusinessTrip.Domain.Enums
 {
-    public  enum BookingStatus
+    public enum BookingStatus
     {
+        Pending = 1,     // در انتظار تأیید
+        Confirmed = 2,   // تأیید شده
+        Cancelled = 3   // لغو شده
     }
 }
