@@ -17,5 +17,6 @@ public class TripRequestTravelService
 
     public TravelService TravelService { get; set; } = null!;
 
-    public DateTime SelectedAt { get; set; } = DateTime.UtcNow;
+    public DateTime SelectedAt { get; set; } = DateTime.UtcNow; 
+    public ICollection<TravelBooking> TravelBookings { get; set; } = new List<TravelBooking>(); 
 }
