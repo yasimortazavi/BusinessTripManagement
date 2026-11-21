@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BusinessTrip.Application\BusinessTrip.Application.csproj" />
     <ProjectReference Include="..\BusinessTrip.Domain\BusinessTrip.Domain.csproj" />
+    <ProjectReference Include="..\BusinessTrip.Infrastructure\BusinessTrip.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
