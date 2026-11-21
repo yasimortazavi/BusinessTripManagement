@@ -14,6 +14,14 @@ namespace BusinessTrip.Infrastructure.Persistence
         {
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(BusinessTripDbContext).Assembly);
+        }
+
+
 
         public DbSet<BusinessTripRequest> BusinessTripRequests { get; set; }
         public DbSet<Destination> Destinations { get; set; }
