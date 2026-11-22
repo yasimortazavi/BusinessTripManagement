@@ -18,6 +18,34 @@ namespace BusinessTrip.Infrastructure.Configurations
 
             builder.Property(x => x.IsActive)
                 .IsRequired();
+
+            builder.HasData(
+                    new TripPurpose { 
+                        Id = 1 ,
+                        Name = "مأموریت کاری",
+                        Description = "انجام امور محوله سازمانی",
+                        IsActive = true
+                
+                    },
+                    new TripPurpose
+                    {
+                        Id = 2,
+                        Name = "شرکت در جلسه",
+                        Description = "حضور در جلسات سازمانی",
+                        IsActive = true
+
+                    },
+                    new TripPurpose
+                    {
+                        Id = 3,
+                        Name = "آموزش",
+                        Description = "شرکت در دوره‌های آموزشی",
+                        IsActive = true
+
+                    }
+
+
+                );
         }
     }
 }

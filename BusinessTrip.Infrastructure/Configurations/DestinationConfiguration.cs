@@ -26,10 +26,35 @@ namespace BusinessTrip.Infrastructure.Configurations
             builder.Property(x => x.IsActive)
                 .IsRequired();
 
-            builder.HasMany(x => x.BusinessTripRequests)
-                .WithOne(x => x.Destination)
-                .HasForeignKey(x => x.DestinationId)
-                .OnDelete(DeleteBehavior.Restrict);
+      
+
+
+            builder.HasData(
+                    new Destination { 
+                        Id = 1,
+                        Name = "تهران",
+                        Description = "پایتخت ایران",
+                        IsActive  = true
+
+                    },
+
+                    new Destination { 
+                        Id = 2,
+                        Name = "اصفهان",
+                        Description = "مرکز استان اصفهان",
+                        IsActive = true
+
+                    },
+
+                    new Destination
+                    {
+                        Id = 3,
+                        Name = "مشهد",
+                        Description = "مرکز استان خراسان رضوی",
+                        IsActive = true
+
+                    }
+                );
         }
     }
 }
