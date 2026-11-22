@@ -30,11 +30,35 @@ namespace BusinessTrip.Infrastructure.Configurations
                 .HasPrecision(18,2);
 
 
-            builder.HasMany(x => x.TripRequestTravelServices)
-                .WithOne(x => x.TravelService)
-                .HasForeignKey(x => x.TravelServiceId)
-                .OnDelete(DeleteBehavior.Restrict);
-                
+
+
+
+            builder.HasData(
+
+                new TravelService
+                {
+                    Id = 1,
+                    Name = "بلیت هواپیما",
+                    Description = "خدمات حمل‌ونقل هوایی",
+                    BaseCost = 5000000,
+                    IsActive = true,
+                },
+                new TravelService
+                {
+                    Id = 2,
+                    Name = "بلیت قطار",
+                    Description = "خدمات حمل‌ونقل ریلی",
+                    BaseCost = 2000000,
+                    IsActive = true,
+                },
+                new TravelService
+                {
+                    Id = 3,
+                    Name = "رزرو هتل",
+                    Description = "خدمات اقامت",
+                    BaseCost = 3000000,
+                    IsActive = true,
+                });                
         }
     }
 }

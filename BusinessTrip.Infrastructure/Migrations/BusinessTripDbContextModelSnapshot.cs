@@ -209,6 +209,32 @@ namespace BusinessTrip.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TravelServices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BaseCost = 5000000m,
+                            Description = "خدمات حمل‌ونقل هوایی",
+                            IsActive = true,
+                            Name = "بلیت هواپیما"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BaseCost = 2000000m,
+                            Description = "خدمات حمل‌ونقل ریلی",
+                            IsActive = true,
+                            Name = "بلیت قطار"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BaseCost = 3000000m,
+                            Description = "خدمات اقامت",
+                            IsActive = true,
+                            Name = "رزرو هتل"
+                        });
                 });
 
             modelBuilder.Entity("BusinessTrip.Domain.Entities.TripApproval", b =>
@@ -307,6 +333,29 @@ namespace BusinessTrip.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TripPurposes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "انجام امور محوله سازمانی",
+                            IsActive = true,
+                            Name = "مأموریت کاری"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "حضور در جلسات سازمانی",
+                            IsActive = true,
+                            Name = "شرکت در جلسه"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "شرکت در دوره‌های آموزشی",
+                            IsActive = true,
+                            Name = "آموزش"
+                        });
                 });
 
             modelBuilder.Entity("BusinessTrip.Domain.Entities.TripRequestTravelService", b =>
