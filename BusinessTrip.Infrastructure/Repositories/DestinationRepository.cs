@@ -1,5 +1,7 @@
 ﻿using BusinessTrip.Application.Interfaces.Repositories;
 using BusinessTrip.Domain.Entities;
+using BusinessTrip.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,16 @@ namespace BusinessTrip.Infrastructure.Repositories
 {
     public class DestinationRepository : IDestinationRepository
     {
-        public Task<List<Destination>> GetAllAsync()
+        private readonly BusinessTripDbContext _context;
+
+        public DestinationRepository(BusinessTripDbContext businessTripDbContext)
         {
-            throw new NotImplementedException();
+            _context = businessTripDbContext;
+        }
+
+        public async Task<List<Destination>> GetAllAsync()
+        {
+           return  await _context.Destinations.ToListAsync();
         }
     }
 }
