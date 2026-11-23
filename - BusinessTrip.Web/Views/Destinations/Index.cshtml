@@ -1,0 +1,176 @@
+﻿
+@model List<BusinessTrip.Domain.Entities.Destination>
+
+@{
+    ViewData["Title"] = "مدیریت مقصدها";
+}
+
+<style>
+    .destination-page {
+        direction: rtl;
+        padding: 30px;
+        background: #f5f7fb;
+        min-height: 80vh;
+        font-family: Tahoma, sans-serif;
+    }
+
+    .destination-card {
+        background: white;
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+
+    .page-title {
+        font-size: 23px;
+        font-weight: bold;
+        color: #243247;
+        margin-bottom: 8px;
+    }
+
+    .page-subtitle {
+        color: #8993a4;
+        font-size: 13px;
+        margin-bottom: 25px;
+    }
+
+    .destination-count {
+        background: #edf3ff;
+        color: #3867c8;
+        padding: 15px 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .destination-count strong {
+        font-size: 22px;
+        margin-left: 8px;
+    }
+
+    .destination-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: right;
+    }
+
+    .destination-table th {
+        background: #f7f9fc;
+        color: #68758a;
+        font-size: 13px;
+        padding: 16px;
+        font-weight: bold;
+    }
+
+    .destination-table td {
+        padding: 17px 16px;
+        border-bottom: 1px solid #edf0f5;
+        color: #344054;
+        font-size: 14px;
+    }
+
+    .destination-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .destination-table tbody tr:hover {
+        background: #fafcff;
+    }
+
+    .status {
+        padding: 6px 13px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .active {
+        background: #e6f7ef;
+        color: #15945b;
+    }
+
+    .inactive {
+        background: #fff0ed;
+        color: #d65a45;
+    }
+
+    .empty-message {
+        text-align: center;
+        padding: 35px;
+        color: #8993a4;
+    }
+
+    @@media (max-width: 768px) {
+        .destination-page {
+            padding: 12px;
+        }
+
+        .destination-card {
+            overflow-x: auto;
+        }
+
+        .destination-table {
+            min-width: 550px;
+        }
+    }
+</style>
+
+<div class="destination-page">
+    <div class="destination-card">
+
+        <div class="page-title">مدیریت مقصدهای سفر</div>
+        <div class="page-subtitle">
+            مشاهده و بررسی فهرست مقصدهای ثبت‌شده در سامانه
+        </div>
+
+        <div class="destination-count">
+            <strong>@(Model?.Count ?? 0)</strong>
+            مقصد ثبت‌شده
+        </div>
+
+        <table class="destination-table">
+            <thead>
+                <tr>
+                    <th>شناسه</th>
+                    <th>نام مقصد</th>
+                    <th>توضیحات</th>
+                    <th>وضعیت</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var destination in Model)
+                    {
+                        <tr>
+                            <td>@destination.Id</td>
+                            <td><strong>@destination.Name</strong></td>
+                            <td>@(string.IsNullOrWhiteSpace(destination.Description)
+                                ? "—" : destination.Description)</td>
+                            <td>
+                                @if (destination.IsActive)
+                                {
+                                    <span class="status active">فعال</span>
+                                }
+                                else
+                                {
+                                    <span class="status inactive">غیرفعال</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="empty-message">
+                            مقصدی برای نمایش وجود ندارد.
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
