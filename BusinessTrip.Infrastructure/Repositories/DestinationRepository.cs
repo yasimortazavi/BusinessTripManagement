@@ -24,6 +24,7 @@ namespace BusinessTrip.Infrastructure.Repositories
            return  await _context.Destinations
                 .OrderByDescending(e => e.IsActive)
                 .ThenByDescending(e => e.Name)
+                .Take(10)
                 .ToListAsync();
         }
 
