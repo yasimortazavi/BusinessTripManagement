@@ -33,7 +33,9 @@ namespace BusinessTrip.Infrastructure.Repositories
         public async Task<List<Destination>> GetActiveAsync()
         {
 
-            return await _context.Destinations.Where(e => e.IsActive ).ToListAsync();
+            return await _context.Destinations.Where(e => e.IsActive )
+                .OrderByDescending(e => e.Name)
+                .ToListAsync();
 
         }
     }
