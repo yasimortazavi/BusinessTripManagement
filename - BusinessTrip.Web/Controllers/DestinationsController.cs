@@ -1,5 +1,4 @@
 ﻿using BusinessTrip.Application.Interfaces.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BusinessTrip.Web.Controllers
@@ -21,73 +20,16 @@ namespace BusinessTrip.Web.Controllers
             return View(model);
         }
 
-        // GET: DestinationsController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: DestinationsController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: DestinationsController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+        public async Task<IActionResult> Details(int id)
+        { 
+            var destination = await _destinationService.GetByIdAsync(id);
+            if (destination == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: DestinationsController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+            return View(destination);
 
-        // POST: DestinationsController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: DestinationsController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: DestinationsController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

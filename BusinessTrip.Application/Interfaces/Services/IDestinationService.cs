@@ -10,5 +10,6 @@ namespace BusinessTrip.Application.Interfaces.Services
     public interface IDestinationService
     {
         Task<List<Destination>> GetAllAsync();
+        Task<Destination?> GetByIdAsync(int id);
     } 
 }

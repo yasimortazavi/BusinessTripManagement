@@ -23,5 +23,11 @@ namespace BusinessTrip.Infrastructure.Repositories
         {
            return  await _context.Destinations.ToListAsync();
         }
+
+        public async Task<Destination?> GetByIdAsync(int id)
+        {
+            return await _context.Destinations
+      .FirstOrDefaultAsync(e => e.Id == id);
+        }
     }
 }

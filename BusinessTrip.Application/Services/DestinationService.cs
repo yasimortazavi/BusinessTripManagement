@@ -22,5 +22,10 @@ namespace BusinessTrip.Application.Services
         {
           return  _destinationRepository.GetAllAsync();
         }
+        public Task<Destination?> GetByIdAsync(int id)
+        { 
+            return _destinationRepository.GetByIdAsync(id);
+        
+        }
     }
 }

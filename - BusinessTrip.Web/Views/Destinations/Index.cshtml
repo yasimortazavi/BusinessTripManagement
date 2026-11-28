@@ -1,176 +1,382 @@
-﻿
-@model List<BusinessTrip.Domain.Entities.Destination>
+﻿@model List<BusinessTrip.Domain.Entities.Destination>
 
 @{
-    ViewData["Title"] = "مدیریت مقصدها";
+    ViewData["Title"] = "مقصدهای سفر";
 }
 
 <style>
-    .destination-page {
+    .travel-page {
         direction: rtl;
+        min-height: 85vh;
+        padding: 38px 22px;
+        background: #f7f5ef;
+        color: #303c32;
+    }
+
+    .travel-container {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .travel-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 32px;
+        gap: 15px;
+    }
+
+    .travel-eyebrow {
+        color: #9a8055;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 9px;
+    }
+
+    .travel-top h2 {
+        font-size: 27px;
+        font-weight: 800;
+        color: #354638;
+        margin: 0 0 9px;
+    }
+
+    .travel-top p {
+        color: #85877d;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .travel-stamp {
+        width: 65px;
+        height: 65px;
+        background: #e8eadc;
+        color: #637650;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 29px;
+        flex-shrink: 0;
+    }
+
+    .travel-banner {
+        position: relative;
+        overflow: hidden;
+        background: #435b48;
+        color: white;
+        border-radius: 20px;
         padding: 30px;
-        background: #f5f7fb;
-        min-height: 80vh;
-        font-family: Tahoma, sans-serif;
+        margin-bottom: 24px;
     }
 
-    .destination-card {
+        .travel-banner::after {
+            content: "✈";
+            position: absolute;
+            left: 45px;
+            top: 5px;
+            font-size: 100px;
+            color: rgba(255,255,255,.09);
+            transform: rotate(-15deg);
+        }
+
+        .travel-banner small {
+            color: #d9dfc9;
+            font-size: 12px;
+        }
+
+        .travel-banner h3 {
+            font-size: 21px;
+            font-weight: 700;
+            margin: 12px 0 8px;
+        }
+
+        .travel-banner p {
+            color: #e0e6d9;
+            font-size: 13px;
+            margin: 0;
+        }
+
+    .travel-summary {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 18px;
+        margin-bottom: 27px;
+    }
+
+    .summary-box {
         background: white;
+        border: 1px solid #ebe9df;
         border-radius: 16px;
-        padding: 25px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        padding: 22px;
     }
 
-    .page-title {
-        font-size: 23px;
-        font-weight: bold;
-        color: #243247;
-        margin-bottom: 8px;
-    }
+        .summary-box.highlight {
+            background: #e9eddf;
+            border-color: #e9eddf;
+        }
 
-    .page-subtitle {
-        color: #8993a4;
+    .summary-label {
+        color: #818477;
         font-size: 13px;
-        margin-bottom: 25px;
+        margin-bottom: 12px;
     }
 
-    .destination-count {
-        background: #edf3ff;
-        color: #3867c8;
-        padding: 15px 20px;
-        border-radius: 12px;
-        margin-bottom: 25px;
-        display: inline-block;
+    .summary-number {
+        font-size: 32px;
+        font-weight: 800;
+        color: #435b48;
     }
 
-    .destination-count strong {
-        font-size: 22px;
-        margin-left: 8px;
+    .summary-note {
+        color: #8b8d80;
+        font-size: 12px;
+        margin-top: 5px;
     }
+
+    .destination-section {
+        background: white;
+        border: 1px solid #ebe9df;
+        border-radius: 18px;
+        padding: 25px;
+    }
+
+    .section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 22px;
+        gap: 12px;
+    }
+
+        .section-heading h3 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #354638;
+            margin: 0;
+        }
+
+        .section-heading span {
+            font-size: 12px;
+            color: #a18b65;
+        }
 
     .destination-table {
         width: 100%;
         border-collapse: collapse;
         text-align: right;
+        min-width: 480px;
     }
 
-    .destination-table th {
-        background: #f7f9fc;
-        color: #68758a;
+        .destination-table th {
+            background: #f8f7f2;
+            color: #898b7e;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 15px;
+        }
+
+            .destination-table th:first-child {
+                border-radius: 0 9px 9px 0;
+            }
+
+            .destination-table th:last-child {
+                border-radius: 9px 0 0 9px;
+            }
+
+        .destination-table td {
+            padding: 17px 15px;
+            border-bottom: 1px solid #f0efe8;
+            font-size: 14px;
+            color: #505b4f;
+        }
+
+        .destination-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .destination-table tbody tr:hover {
+            background: #fbfaf6;
+        }
+
+    .destination-id {
+        color: #a18b65;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .destination-name {
+        font-weight: 700;
+        color: #354638;
+    }
+
+    /* Details button */
+    .destination-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 11px 18px;
+        border-radius: 10px;
+        background: #435b48;
+        color: #ffffff !important;
+        text-decoration: none !important;
         font-size: 13px;
-        padding: 16px;
-        font-weight: bold;
+        font-weight: 700;
+        border: 1px solid #435b48;
+        cursor: pointer;
+        transition: all .25s ease;
+        position: relative;
+        z-index: 2;
     }
 
-    .destination-table td {
-        padding: 17px 16px;
-        border-bottom: 1px solid #edf0f5;
-        color: #344054;
+        .destination-link:hover {
+            background: #304536;
+            border-color: #304536;
+            color: #ffffff !important;
+            box-shadow: 0 5px 14px rgba(67, 91, 72, .22);
+            transform: translateY(-2px);
+        }
+
+        .destination-link:active {
+            transform: translateY(0);
+        }
+
+        .destination-link .arrow {
+            font-size: 17px;
+            transition: transform .2s ease;
+        }
+
+        .destination-link:hover .arrow {
+            transform: translateX(-4px);
+        }
+
+    .empty-state {
+        text-align: center;
+        padding: 45px 15px;
+        color: #929387;
         font-size: 14px;
     }
 
-    .destination-table tr:last-child td {
-        border-bottom: none;
+    .empty-icon {
+        font-size: 35px;
+        margin-bottom: 12px;
     }
 
-    .destination-table tbody tr:hover {
-        background: #fafcff;
-    }
-
-    .status {
-        padding: 6px 13px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
-    }
-
-    .active {
-        background: #e6f7ef;
-        color: #15945b;
-    }
-
-    .inactive {
-        background: #fff0ed;
-        color: #d65a45;
-    }
-
-    .empty-message {
-        text-align: center;
-        padding: 35px;
-        color: #8993a4;
-    }
-
-    @@media (max-width: 768px) {
-        .destination-page {
-            padding: 12px;
+    @@media(max-width: 650px) {
+        .travel-summary {
+            grid-template-columns: 1fr;
         }
 
-        .destination-card {
+        .travel-top h2 {
+            font-size: 22px;
+        }
+
+        .destination-section {
+            padding: 15px;
             overflow-x: auto;
         }
 
-        .destination-table {
-            min-width: 550px;
+        .travel-banner::after {
+            left: 10px;
         }
     }
 </style>
 
-<div class="destination-page">
-    <div class="destination-card">
+<div class="travel-page">
+    <div class="travel-container">
 
-        <div class="page-title">مدیریت مقصدهای سفر</div>
-        <div class="page-subtitle">
-            مشاهده و بررسی فهرست مقصدهای ثبت‌شده در سامانه
+        <div class="travel-top">
+            <div>
+                <div class="travel-eyebrow">BUSINESS TRAVEL / DESTINATIONS</div>
+                <h2>مقصدهای سفر</h2>
+                <p>مدیریت مقصدهای قابل انتخاب برای سفرهای سازمانی</p>
+            </div>
+
+            <div class="travel-stamp">✈</div>
         </div>
 
-        <div class="destination-count">
-            <strong>@(Model?.Count ?? 0)</strong>
-            مقصد ثبت‌شده
+        <div class="travel-banner">
+            <small>YOUR NEXT DESTINATION</small>
+            <h3>هر سفر، شروع یک تجربه تازه</h3>
+            <p>فهرست مقصدهای تعریف‌شده در سامانه سفرهای سازمانی</p>
         </div>
 
-        <table class="destination-table">
-            <thead>
-                <tr>
-                    <th>شناسه</th>
-                    <th>نام مقصد</th>
-                    <th>توضیحات</th>
-                    <th>وضعیت</th>
-                </tr>
-            </thead>
+        <div class="travel-summary">
 
-            <tbody>
-                @if (Model != null && Model.Any())
-                {
-                    @foreach (var destination in Model)
-                    {
+            <div class="summary-box highlight">
+                <div class="summary-label">تعداد مقصدهای ثبت‌شده</div>
+                <div class="summary-number">@Model.Count</div>
+                <div class="summary-note">مقصد در سامانه تعریف شده است</div>
+            </div>
+
+            <div class="summary-box">
+                <div class="summary-label">مدیریت مقصدها</div>
+                <div style="font-size:15px; font-weight:700; color:#435b48; margin-bottom:8px;">
+                    مقصد موردنظر خود را انتخاب کنید
+                </div>
+                <div class="summary-note">
+                    برای مشاهده اطلاعات هر مقصد از گزینه جزئیات استفاده کنید.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="destination-section">
+
+            <div class="section-heading">
+                <h3>فهرست مقصدها</h3>
+                <span>DESTINATION LIST</span>
+            </div>
+
+            @if (Model.Any())
+            {
+                <table class="destination-table">
+                    <thead>
                         <tr>
-                            <td>@destination.Id</td>
-                            <td><strong>@destination.Name</strong></td>
-                            <td>@(string.IsNullOrWhiteSpace(destination.Description)
-                                ? "—" : destination.Description)</td>
-                            <td>
-                                @if (destination.IsActive)
-                                {
-                                    <span class="status active">فعال</span>
-                                }
-                                else
-                                {
-                                    <span class="status inactive">غیرفعال</span>
-                                }
-                            </td>
+                            <th>شناسه</th>
+                            <th>نام مقصد</th>
+                            <th>مشاهده اطلاعات</th>
                         </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="4" class="empty-message">
-                            مقصدی برای نمایش وجود ندارد.
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var destination in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <span class="destination-id">
+                                        #@destination.Id
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="destination-name">
+                                        @destination.Name
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <a href="@Url.Action("Details", "Destinations", new { id = destination.Id })"
+                                       class="destination-link">
+                                        مشاهده جزئیات
+                                        <span class="arrow">←</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="empty-state">
+                    <div class="empty-icon">📍</div>
+                    هنوز مقصدی در سامانه ثبت نشده است.
+                </div>
+            }
+
+        </div>
 
     </div>
 </div>

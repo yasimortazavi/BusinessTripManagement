@@ -1,0 +1,235 @@
+﻿@model BusinessTrip.Domain.Entities.Destination
+
+@{
+    ViewData["Title"] = "جزئیات مقصد";
+}
+
+<style>
+    .travel-page {
+        direction: rtl;
+        min-height: 85vh;
+        padding: 38px 22px;
+        background: #f7f5ef;
+        color: #303c32;
+    }
+
+    .travel-container {
+        max-width: 950px;
+        margin: auto;
+    }
+
+    .details-top {
+        margin-bottom: 28px;
+    }
+
+    .eyebrow {
+        color: #9a8055;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+    }
+
+    .details-top h2 {
+        color: #354638;
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 9px;
+    }
+
+    .details-top p {
+        color: #85877d;
+        font-size: 14px;
+    }
+
+    .destination-hero {
+        position: relative;
+        overflow: hidden;
+        background: #435b48;
+        color: white;
+        border-radius: 20px;
+        padding: 35px;
+        margin-bottom: 22px;
+    }
+
+        .destination-hero::after {
+            content: "✈";
+            position: absolute;
+            left: 40px;
+            top: 5px;
+            font-size: 100px;
+            color: rgba(255,255,255,.09);
+            transform: rotate(-15deg);
+        }
+
+        .destination-hero small {
+            color: #d9dfc9;
+            font-size: 12px;
+        }
+
+        .destination-hero h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 15px 0 10px;
+        }
+
+        .destination-hero p {
+            color: #e0e6d9;
+            font-size: 13px;
+            margin: 0;
+        }
+
+    .details-card {
+        background: white;
+        border: 1px solid #ebe9df;
+        border-radius: 18px;
+        padding: 28px;
+    }
+
+    .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+    }
+
+        .section-heading h4 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #354638;
+            margin: 0;
+        }
+
+        .section-heading span {
+            font-size: 11px;
+            color: #a18b65;
+        }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .info-item {
+        background: #f8f7f2;
+        border: 1px solid #f0efe8;
+        border-radius: 13px;
+        padding: 20px;
+    }
+
+    .info-label {
+        display: block;
+        color: #898b7e;
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+
+    .info-value {
+        color: #435b48;
+        font-size: 17px;
+        font-weight: 800;
+    }
+
+    .details-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        padding: 11px 19px;
+        border-radius: 10px;
+        background: #435b48;
+        color: white;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+        transition: .2s;
+    }
+
+        .back-link:hover {
+            background: #304536;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+    .details-caption {
+        color: #a09f92;
+        font-size: 11px;
+    }
+
+    @@media(max-width: 600px) {
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .destination-hero {
+            padding: 25px;
+        }
+
+        .details-card {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="travel-page">
+    <div class="travel-container">
+
+        <div class="details-top">
+            <div class="eyebrow">BUSINESS TRAVEL / DESTINATIONS</div>
+            <h2>جزئیات مقصد</h2>
+            <p>مشاهده اطلاعات مقصد انتخاب‌شده در سامانه سفرهای سازمانی</p>
+        </div>
+
+        <div class="destination-hero">
+            <small>SELECTED DESTINATION</small>
+            <h3>@Model.Name</h3>
+            <p>اطلاعات ثبت‌شده برای این مقصد</p>
+        </div>
+
+        <div class="details-card">
+
+            <div class="section-heading">
+                <h4>اطلاعات مقصد</h4>
+                <span>DESTINATION INFORMATION</span>
+            </div>
+
+            <div class="info-grid">
+
+                <div class="info-item">
+                    <span class="info-label">شناسه مقصد</span>
+                    <span class="info-value">#@Model.Id</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">نام مقصد</span>
+                    <span class="info-value">@Model.Name</span>
+                </div>
+
+            </div>
+
+            <div class="details-footer">
+
+                <a href="@Url.Action("Index", "Destinations")"
+                   class="back-link">
+                    <span>→</span>
+                    بازگشت به فهرست مقصدها
+                </a>
+
+                <span class="details-caption">
+                    BUSINESS TRIP MANAGEMENT
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+</div>

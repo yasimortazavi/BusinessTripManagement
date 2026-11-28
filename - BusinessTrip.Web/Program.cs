@@ -5,8 +5,10 @@ using BusinessTrip.Application.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
-builder.Services.AddControllersWithViews();
+
+builder.Services
+    .AddControllersWithViews()
+    .AddRazorRuntimeCompilation();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
@@ -27,7 +29,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
