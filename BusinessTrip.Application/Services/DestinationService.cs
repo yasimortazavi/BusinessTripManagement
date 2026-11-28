@@ -27,5 +27,10 @@ namespace BusinessTrip.Application.Services
             return _destinationRepository.GetByIdAsync(id);
         
         }
+
+        public Task<List<Destination>> GetActiveAsync()
+        {
+            return _destinationRepository.GetActiveAsync();
+        }
     }
 }

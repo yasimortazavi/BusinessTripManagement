@@ -11,5 +11,8 @@ namespace BusinessTrip.Application.Interfaces.Services
     {
         Task<List<Destination>> GetAllAsync();
         Task<Destination?> GetByIdAsync(int id);
+        Task<List<Destination>> GetActiveAsync();
     } 
+
+
 }

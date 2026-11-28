@@ -7,5 +7,6 @@ namespace BusinessTrip.Application.Interfaces.Repositories
     {
         Task<List<Destination>> GetAllAsync();
         Task<Destination?> GetByIdAsync(int id);
+        Task<List<Destination>> GetActiveAsync();
     }
 }

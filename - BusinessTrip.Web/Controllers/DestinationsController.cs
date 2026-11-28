@@ -31,5 +31,16 @@ namespace BusinessTrip.Web.Controllers
             return View(destination);
 
         }
+        public async Task<IActionResult> Active()
+        {
+            var activeDestinations = await _destinationService.GetActiveAsync();
+            if (activeDestinations == null)
+            {
+                return NotFound();
+            }
+
+            return View(activeDestinations);
+        
+        }
     }
 }
