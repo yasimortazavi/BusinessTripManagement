@@ -21,7 +21,10 @@ namespace BusinessTrip.Infrastructure.Repositories
 
         public async Task<List<Destination>> GetAllAsync()
         {
-           return  await _context.Destinations.ToListAsync();
+           return  await _context.Destinations
+                .OrderByDescending(e => e.IsActive)
+                .ThenByDescending(e => e.Name)
+                .ToListAsync();
         }
 
         public async Task<Destination?> GetByIdAsync(int id)
